@@ -52,9 +52,9 @@ module.exports = async (req, res) => {
       to: email,
       subject: 'Thank you for your inquiry - SkyShot Aerial',
       html: `
-        <h2>Thanks for your inquiry!</h2>
+        <h2>Thank you for contacting us!</h2>
         <p>Hi ${name},</p>
-        <p>We've received your booking request and will respond with a quote within 2 hours during business hours.</p>
+        <p>Your message has been successfully received. Our team will review your inquiry and respond within 2-4 hours during business hours. We look forward to assisting you!</p>
 
         <h3>Your Request Details:</h3>
         <p><strong>Package:</strong> ${pkg}</p>
