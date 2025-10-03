@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, phone, email, brokerage, package: pkg, propertyType, address, date, message } = req.body;
+    const { name, phone, email, brokerage, package: pkg, address, message } = req.body;
 
     // Create transporter using Gmail
     const transporter = nodemailer.createTransport({
@@ -39,9 +39,7 @@ module.exports = async (req, res) => {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Brokerage:</strong> ${brokerage || 'N/A'}</p>
         <p><strong>Package:</strong> ${pkg}</p>
-        <p><strong>Property Type:</strong> ${propertyType}</p>
         <p><strong>Address:</strong> ${address || 'N/A'}</p>
-        <p><strong>Preferred Date:</strong> ${date || 'N/A'}</p>
         <p><strong>Message:</strong> ${message || 'N/A'}</p>
       `,
     };
@@ -58,9 +56,7 @@ module.exports = async (req, res) => {
 
         <h3>Your Request Details:</h3>
         <p><strong>Package:</strong> ${pkg}</p>
-        <p><strong>Property Type:</strong> ${propertyType}</p>
         <p><strong>Property Address:</strong> ${address || 'N/A'}</p>
-        <p><strong>Preferred Date:</strong> ${date || 'N/A'}</p>
 
         <p>If you have any urgent questions, feel free to call or text us at (610) 299-1078.</p>
 

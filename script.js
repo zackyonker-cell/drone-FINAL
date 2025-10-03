@@ -1,3 +1,34 @@
+// Custom popup functions
+function showSuccessPopup() {
+    const popup = document.createElement('div');
+    popup.className = 'custom-popup success-popup';
+    popup.innerHTML = `
+        <div class="popup-content">
+            <div class="popup-icon">✓</div>
+            <h3>Message Sent Successfully!</h3>
+            <p>Thank you for your inquiry. We'll respond within 2-4 hours during business hours.</p>
+            <button class="popup-close" onclick="this.parentElement.parentElement.remove()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.classList.add('show'), 10);
+}
+
+function showErrorPopup() {
+    const popup = document.createElement('div');
+    popup.className = 'custom-popup error-popup';
+    popup.innerHTML = `
+        <div class="popup-content">
+            <div class="popup-icon">✕</div>
+            <h3>Oops! Something went wrong</h3>
+            <p>Please call or email us directly:<br>(610) 299-1078 or zackyonker@gmail.com</p>
+            <button class="popup-close" onclick="this.parentElement.parentElement.remove()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.classList.add('show'), 10);
+}
+
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -31,9 +62,7 @@ if (form) {
             email: form.email.value,
             brokerage: form.brokerage.value,
             package: form.package.value,
-            propertyType: form['property-type'].value,
             address: form.address.value,
-            date: form.date.value,
             message: form.message.value
         };
 
@@ -48,14 +77,14 @@ if (form) {
             });
 
             if (response.ok) {
-                alert('Thanks for your inquiry! We\'ll respond with a quote within 2 hours during business hours.');
+                showSuccessPopup();
                 form.reset();
             } else {
                 throw new Error('Failed to send email');
             }
         } catch (error) {
             console.error('Error sending email:', error);
-            alert('There was an error sending your message. Please call or email us directly at (610) 299-1078 or zackyonker@gmail.com');
+            showErrorPopup();
         } finally {
             submitButton.textContent = originalText;
             submitButton.disabled = false;
