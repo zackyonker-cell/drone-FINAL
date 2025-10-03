@@ -21,7 +21,7 @@ function showErrorPopup() {
         <div class="popup-content">
             <div class="popup-icon">✕</div>
             <h3>Oops! Something went wrong</h3>
-            <p>Please call or email us directly:<br>(610) 299-1078 or zackyonker@gmail.com</p>
+            <p>Please call or email us directly:<br>(610) 299-1078 or aerialskyshot@gmail.com</p>
             <button class="popup-close" onclick="this.parentElement.parentElement.remove()">Close</button>
         </div>
     `;

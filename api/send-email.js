@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
         <p>Best regards,<br>
         SkyShot Aerial<br>
         (610) 299-1078<br>
-        zackyonker@gmail.com</p>
+        aerialskyshot@gmail.com</p>
       `,
     };
 
