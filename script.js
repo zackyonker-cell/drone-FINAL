@@ -3,26 +3,39 @@ function showSuccessPopup() {
     const popup = document.createElement('div');
     popup.className = 'custom-popup success-popup';
     popup.innerHTML = `
-        <div class="popup-content">
-            <div class="popup-icon">✓</div>
-            <h3>Message Sent Successfully!</h3>
-            <p>Thank you for your inquiry. We'll respond within 2-4 hours during business hours.</p>
-            <button class="popup-close" onclick="this.parentElement.parentElement.remove()">Close</button>
+        <div class="popup-overlay" onclick="this.parentElement.remove()"></div>
+        <div class="popup-card">
+            <div class="popup-icon-wrapper">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h3 class="popup-title">Message Sent!</h3>
+            <p class="popup-message">Thank you for reaching out. We'll get back to you within 2-4 hours during business hours.</p>
+            <button class="popup-btn" onclick="this.closest('.custom-popup').remove()">Got it</button>
         </div>
     `;
     document.body.appendChild(popup);
     setTimeout(() => popup.classList.add('show'), 10);
+    setTimeout(() => popup.remove(), 5000);
 }
 
 function showErrorPopup() {
     const popup = document.createElement('div');
     popup.className = 'custom-popup error-popup';
     popup.innerHTML = `
-        <div class="popup-content">
-            <div class="popup-icon">✕</div>
-            <h3>Oops! Something went wrong</h3>
-            <p>Please call or email us directly:<br>(610) 299-1078 or aerialskyshot@gmail.com</p>
-            <button class="popup-close" onclick="this.parentElement.parentElement.remove()">Close</button>
+        <div class="popup-overlay" onclick="this.parentElement.remove()"></div>
+        <div class="popup-card">
+            <div class="popup-icon-wrapper">
+                <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="error-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="error-cross" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+                </svg>
+            </div>
+            <h3 class="popup-title">Something Went Wrong</h3>
+            <p class="popup-message">Please contact us directly:<br><strong>(610) 299-1078</strong> or <strong>aerialskyshot@gmail.com</strong></p>
+            <button class="popup-btn" onclick="this.closest('.custom-popup').remove()">Close</button>
         </div>
     `;
     document.body.appendChild(popup);
