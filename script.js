@@ -13,13 +13,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Initialize EmailJS
-emailjs.init('jmesb3eV6gsXKyyA0');
-
 // Form submission
 const form = document.getElementById('contactForm');
 if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const submitButton = form.querySelector('button[type="submit"]');
@@ -27,20 +24,42 @@ if (form) {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
 
-        // Send email using EmailJS
-        emailjs.sendForm('service_m2mnvqb', 'template_ak8dhw5', form)
-            .then(() => {
+        // Get form data
+        const formData = {
+            name: form.name.value,
+            phone: form.phone.value,
+            email: form.email.value,
+            brokerage: form.brokerage.value,
+            package: form.package.value,
+            propertyType: form['property-type'].value,
+            address: form.address.value,
+            date: form.date.value,
+            message: form.message.value
+        };
+
+        try {
+            // Send to your serverless function
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
                 alert('Thanks for your inquiry! We\'ll respond with a quote within 2 hours during business hours.');
                 form.reset();
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            })
-            .catch((error) => {
-                console.error('Error sending email:', error);
-                alert('There was an error sending your message. Please call or email us directly at (610) 299-1078 or zackyonker@gmail.com');
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            });
+            } else {
+                throw new Error('Failed to send email');
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+            alert('There was an error sending your message. Please call or email us directly at (610) 299-1078 or zackyonker@gmail.com');
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
     });
 }
 

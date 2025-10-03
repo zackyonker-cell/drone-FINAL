@@ -1,0 +1,8 @@
+{
+  "name": "skyshot-aerial",
+  "version": "1.0.0",
+  "description": "SkyShot Aerial Photography Website",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  }
+}
