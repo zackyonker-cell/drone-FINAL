@@ -16,7 +16,8 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { name, phone, email, brokerage, package: pkg, address, message } = req.body;
+    const { firstName, lastName, phone, email, brokerage, package: pkg, address, message } = req.body;
+    const fullName = `${firstName} ${lastName}`;
 
     // Create transporter using Gmail
     const transporter = nodemailer.createTransport({
@@ -31,10 +32,10 @@ module.exports = async (req, res) => {
     const ownerEmail = {
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER,
-      subject: `New Booking Request from ${name}`,
+      subject: `New Booking Request from ${fullName}`,
       html: `
         <h2>New Booking Request</h2>
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Brokerage:</strong> ${brokerage || 'N/A'}</p>
@@ -51,7 +52,7 @@ module.exports = async (req, res) => {
       subject: 'Thank you for your inquiry - SkyShot Aerial',
       html: `
         <h2>Thank you for contacting us!</h2>
-        <p>Hi ${name},</p>
+        <p>Hi ${firstName},</p>
         <p>Your message has been successfully received. Our team will review your inquiry and respond within 2-4 hours during business hours. We look forward to assisting you!</p>
 
         <h3>Your Request Details:</h3>

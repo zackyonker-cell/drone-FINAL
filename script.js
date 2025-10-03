@@ -57,13 +57,14 @@ if (form) {
 
         // Get form data
         const formData = {
-            name: form.name.value,
-            phone: form.phone.value,
-            email: form.email.value,
-            brokerage: form.brokerage.value,
+            firstName: form.firstName.value.trim(),
+            lastName: form.lastName.value.trim(),
+            phone: form.phone.value.trim(),
+            email: form.email.value.trim(),
+            brokerage: form.brokerage.value.trim(),
             package: form.package.value,
-            address: form.address.value,
-            message: form.message.value
+            address: form.address.value.trim(),
+            message: form.message.value.trim()
         };
 
         try {

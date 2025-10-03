@@ -381,19 +381,24 @@
                 <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name *" required>
+                            <input type="text" name="firstName" placeholder="First Name *" required minlength="2" pattern="[A-Za-z\s]+" title="Please enter a valid first name">
                         </div>
                         <div class="form-group">
-                            <input type="tel" name="phone" placeholder="Phone Number *" required>
+                            <input type="text" name="lastName" placeholder="Last Name *" required minlength="2" pattern="[A-Za-z\s]+" title="Please enter a valid last name">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number *" required pattern="[0-9\s\(\)\-\+]+" minlength="10" title="Please enter a valid phone number">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address *" required title="Please enter a valid email address">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Email Address *" required>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" name="brokerage" placeholder="Brokerage/Company">
+                        <input type="text" name="brokerage" placeholder="Brokerage/Company (Optional)">
                     </div>
 
                     <div class="form-group">
@@ -407,11 +412,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="text" name="address" placeholder="Property Address">
+                        <input type="text" name="address" placeholder="Property Address (Optional)">
                     </div>
 
                     <div class="form-group">
-                        <textarea name="message" placeholder="Additional details (access instructions, special requests, etc.)" rows="4"></textarea>
+                        <textarea name="message" placeholder="Additional details (Optional)" rows="4"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-full">Get Instant Quote</button>
